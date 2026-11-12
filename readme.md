@@ -57,7 +57,7 @@ Action: Test an upgrade prompt aimed at engaged Basic customers, such as feature
 Caveat: The data doesn’t say why customers chose Basic or whether they’d pay more. Price-sensitive customers may leave instead of upgrading. The dataset is synthetic.
 
 ## Data
-Four tables (schema diagram: ![Schema diagram](images/schema.PNG)):
+Four tables (schema diagram: ![Schema diagram](images/schema.png)):
 - `users`: one row per signup (date, country, acquisition channel)
 - `subscriptions`: one row per paid subscription (plan, price, dates, status)
 - `payments`: one row per monthly charge
