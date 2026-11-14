@@ -80,19 +80,29 @@ Nine problems were found with SQL before any analysis (`sql/01_data_quality_audi
 | Duplicate payments | 200 groups |
 
 ## Cleaning approach
-Raw tables are never modified. Cleaned copies (`users_clean`, `subscriptions_clean`,
+1. Raw tables are never modified. Cleaned copies (`users_clean`, `subscriptions_clean`,
 `payments_clean`, `events_clean`) are built by `sql/02_cleaning.sql`, which can be
 re-run from scratch. Removed payments go to a quarantine table instead of being
 deleted, and row counts are reconciled at each step.
+2. `generate_clean_data.py` runs the whole pipeline in one command.
 
 ## How to run
-1. Create a PostgreSQL database and run `schema.sql`.
-2. Run `python generate_data.py` to create four CSV files.
-3. Import the CSVs into the matching tables.
-4. Run the files in `sql/` in order, 01 to 07.
+1. Create an empty PostgreSQL database, for example `subscription_analytics`.
+2. Install the driver: `pip install psycopg2-binary`
+3. Generate the raw, messy data (creates four CSV files): `python generate_data.py`
+4. Tell the script how to connect to your database. In Windows PowerShell:
+   `$env:DATABASE_URL = "postgresql://USER:PASSWORD@localhost:5432/subscription_analytics"`
+   (on Mac/Linux: `export DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/subscription_analytics"`)
+5. Build the tables and clean the data: `python generate_clean_data.py`
+   This creates the raw tables from `schema.sql`, loads the CSVs, runs
+   `sql/02_cleaning.sql`, and prints a raw-vs-clean row count reconciliation.
+6. Run `sql/01_data_quality_audit.sql` and `sql/03` to `sql/07` in pgAdmin or psql.
+
+*Manual route:* run `schema.sql`, import the four CSVs into the matching tables,
+then run the files in `sql/` in order, 01 to 07.
 
 ## Repository contents
-- `schema.sql`, `generate_data.py`
+- `schema.sql`, `generate_data.py`, `generate_clean_data.py`
 - `sql/01_data_quality_audit.sql` ... `sql/07_feature_x.sql`
 
 ## Skills demonstrated
