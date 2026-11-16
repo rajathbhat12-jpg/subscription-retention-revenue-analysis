@@ -11,3 +11,12 @@ Four-page Power BI dashboard built on the cleaned PostgreSQL subscription data (
 **Files**
 - Subscription_analytics_dashboard.pdf: full export of all four pages
 - Project_dash.pbix: Power BI source file (open in Power BI Desktop)
+- ## Pages
+
+![Executive Overview](<Dashboard images/Executive Overview.png>)
+
+![Retention & Churn](<Dashboard images/Retention & Churn.png>)
+
+![Product & Acquisition](<Dashboard images/Product & Acquisition.png>)
+
+![Revenue & Financial Performance](<Dashboard images/Revenue & Financial Performance.png>)
