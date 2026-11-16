@@ -1,5 +1,7 @@
 # User Retention & Revenue Analysis | PostgreSQL
 
+**Includes a four-page Power BI dashboard:** see the [Dashboard](Dashboard/) folder.
+
 An end-to-end SQL analysis of a subscription app: auditing messy data, cleaning it,
 and answering the questions a product team would ask about conversion, churn,
 retention and revenue.
